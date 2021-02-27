@@ -1,6 +1,12 @@
 from setuptools import setup, find_packages
 
-version = '0.0.1.dev0'
+version = '0.0.1.dev2'
+
+# read contents of README.md
+from os import path
+current_dir = path.abspath(path.dirname(__file__))
+with open(path.join(current_dir, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
 
 # Remember to update local-oldest-requirements.txt when changing the minimum acme/certbot version.
 install_requires = [
@@ -16,6 +22,8 @@ setup(
     name='certbot-dns-rackspace',
     version=version,
     description="Rackspace Cloud DNS Authenticator plugin for Certbot",
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     url='https://github.com/komputerwiz/certbot-dns-rackspace',
     author='Matthew Barry',
     author_email='matthew@komputerwiz.net',
@@ -48,7 +56,7 @@ setup(
     install_requires=install_requires,
     entry_points={
         'certbot.plugins': [
-            'dns-rackspace = certbot_dns_rackspace.dns_rackspace:Authenticator',
+            'dns-rackspace = certbot_dns_rackspace:Authenticator',
         ],
     },
 )
